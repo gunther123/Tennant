@@ -36,7 +36,15 @@ Timecard.init(
         last_modified: {
             type: DataTypes.DATE,
             allowNull: true
-        }       
+        },
+        individual_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'individual',
+                key: 'id'
+            }
+        }
     },
     {
         sequelize,

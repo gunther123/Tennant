@@ -18,7 +18,7 @@ Department.init(
         lead: {
             type: DataTypes.INTEGER,
             references: {
-                model: Individual,
+                model: 'Individual',
                 // Is this all I need here to pull lead name?
                 key: 'id'
             }

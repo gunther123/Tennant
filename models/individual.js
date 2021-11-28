@@ -27,7 +27,7 @@ Individual.init(
             type: DataTypes.DATE,
             allowNull: false
         },
-        department: {
+        department_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
