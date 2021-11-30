@@ -15,14 +15,6 @@ Department.init(
             type: DataTypes.STRING,
             allowNull: false
         },
-        lead: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'Individual',
-                // Is this all I need here to pull lead name?
-                key: 'id'
-            }
-        },
         deleted: {
             type: DataTypes.BOOLEAN,
             allowNull: false

@@ -1,6 +1,6 @@
-const Department = require('./department');
-const Timecard = require('./timecard');
-const Individual = require('./individual');
+const Department = require('./Department');
+const Timecard = require('./Timecard');
+const Individual = require('./Individual');
 
 Department.hasMany(Individual, {
     foreignKey: 'department_id'

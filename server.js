@@ -1,9 +1,9 @@
 //Require all node modules
 const path = require('path');
-// const routes = require('./controllers/');
-// const exphbs = require('express-handlebars');
+const routes = require('./controllers/');
+const exphbs = require('express-handlebars');
 const sequelize = require('./config/connection');
-// const hbs = exphbs.create({});
+const hbs = exphbs.create({});
 const express = require('express');
 
 //Middleware setup
