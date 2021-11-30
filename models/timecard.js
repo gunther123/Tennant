@@ -15,14 +15,8 @@ Timecard.init(
             type: DataTypes.STRING,
             allowNull: false
         },
-        start_time: {
-
-            // Best way to capure datetime for punch cards?
-            type: DataTypes.DATE,
-            allowNull: true
-        },
-        end_time: {
-            type: DataTypes.DATE,
+        hours: {
+            type: DataTypes.INTEGER,
             allowNull: true
         },
         notes: {
@@ -31,7 +25,7 @@ Timecard.init(
         },
         deleted: {
             type: DataTypes.BOOLEAN,
-            // What else do I need here?
+            allowNull: false
         },
         last_modified: {
             type: DataTypes.DATE,

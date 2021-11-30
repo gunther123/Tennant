@@ -78,6 +78,18 @@ Individual.init(
         }
     },
     {
+        hooks: {
+            async beforeCreate(newIndividualData) {
+                newIndividualData.password = await bcrypt.hash(newIndividualData.password, 10);
+                return newIndividualData;
+            },
+            async beforeUpdate(updatedIndividualData) {
+                updatedIndividualData.password = await bcrypt.hash(updatedIndividualData.password, 10);
+                return updatedIndividualData;
+            }
+        }
+    },
+    {
         sequelize,
         freezeTableName: true,
         underscored: true,

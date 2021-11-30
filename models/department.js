@@ -25,7 +25,7 @@ Department.init(
         },
         deleted: {
             type: DataTypes.BOOLEAN,
-            // What else do I need here?
+            allowNull: false
         }
     },
     {
