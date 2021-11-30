@@ -1,7 +1,11 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Individual extends Model {}
+class Individual extends Model {
+    checkPassword(loginPw) {
+        return bcrypt.compareSync(loginPw, this.password);
+    }
+}
 
 Individual.init(
     {
@@ -35,13 +39,13 @@ Individual.init(
                 key: 'id'
             }
         },
-        timecards: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'timecards',
-                key: 'id'
-            }
-        },
+        // timecards: {
+        //     type: DataTypes.INTEGER,
+        //     references: {
+        //         model: 'timecards',
+        //         key: 'id'
+        //     }
+        // },
         email: {
             type: DataTypes.STRING,
             allowNull: false,
