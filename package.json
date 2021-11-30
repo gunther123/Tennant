@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/gunther123/Tennant#readme",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "cypress": "^9.1.0",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
