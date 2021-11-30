@@ -1,10 +1,10 @@
 //Require all node modules
 const path = require('path');
 const routes = require('./controllers/');
-const exphbs = require('express-handlebars');
-const sequelize = require('./config/connection');
-const hbs = exphbs.create({});
 const express = require('express');
+const sequelize = require('sequelize')
+// const exphbs = require('express-handlebars');
+// const hbs = exphbs.create({})
 
 //Middleware setup
 const app = express();
@@ -14,10 +14,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// connection to db
+app.use(routes);
+
 sequelize.sync({ force: false }).then(() => {
-    //Start server
-    app.listen(PORT, () => {
-        console.log(`App listening on port ${PORT}!`);
+//Start server
+app.listen(PORT, () => {
+    console.log(`App listening on port ${PORT}!`);
     })
 });
