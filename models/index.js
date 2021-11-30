@@ -13,3 +13,5 @@ Individual.belongsTo(Department, {
 Timecard.belongsTo(Individual, {
     foreignKey: 'individual_id'
 });
+
+module.exports = { Department, Individual, Timecard };
