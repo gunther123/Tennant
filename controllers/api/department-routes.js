@@ -35,9 +35,10 @@ router.get('/:id', (req, res) => {
   //Create new Dept
 router.post('/', (req, res) => {
   Department.create({
-    name: req.body.name
+    name: req.body.name,
+    deleted: req.body.deleted
     })
-    .then(dbCatData => res.json(dbCatData))
+    .then(dbPostData => res.json(dbPostData))
     .catch(err => {
         console.log(err);
         res.status(500).json(err);
