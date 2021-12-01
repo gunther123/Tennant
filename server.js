@@ -5,7 +5,6 @@ const sequelize = require('./config/connection')
 var express = require('express');
 const app = express();
 const { Individual, Department, Timecard } = require('./models');
-var helpers = require('handlebars-helpers')();
 
 //Middleware setup
 const PORT = process.env.PORT || 3001;
@@ -99,7 +98,18 @@ app.get('/people', function (req, res) {
     });
 });
 app.get('/people/new', function (req, res) {
-  res.render('people/new');
+  // Find all Department's
+  Department.findAll()
+    .then(dbGetData => {
+      res.render('people/new', { department: dbGetData })
+      //console.log(dbGetData)
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+  //res.render('people/new');
+  
 });
 app.get('/people/view/:id', function (req, res) {
   // Get single individual
