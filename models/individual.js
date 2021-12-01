@@ -29,7 +29,7 @@ Individual.init(
             allowNull: true
         },
         start_date: {
-            type: DataTypes.DATE,
+            type: DataTypes.DATEONLY,
             allowNull: false
         },
         department_id: {
@@ -48,7 +48,7 @@ Individual.init(
             }
         },
         last_modified: {
-            type: DataTypes.DATE,
+            type: DataTypes.DATEONLY,
             allowNull: false
         },
         username: {
@@ -64,10 +64,11 @@ Individual.init(
         },
         disabled: {
             type: DataTypes.BOOLEAN,
-            allowNull: false
+            allowNull: false,
+            defaultValue: false
         },
         last_login: {
-            type: DataTypes.DATE,
+            type: DataTypes.DATEONLY,
             allowNull: true
         },
         notes: {
