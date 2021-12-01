@@ -1,0 +1,23 @@
+
+<h1>{{this.person.first_name}} {{this.person.last_name}}</h1>
+PersonID: <kbd>{{this.person.id}}</kbd><br>
+First name: {{this.person.first_name}}<br>
+Last name: {{this.person.last_name}}<br>
+Nickname: {{this.person.nickname}}<br>
+Email: <a href="mailto:{{this.person.email}}">{{this.person.email}}</a><br>
+<!-- TODO: Lookup & Display Department Name instead of ID -->
+Department: {{this.person.department_id}} <a href="/departments/view/{{this.person.department_id}}">(View)</a><br>
+Notes: {{this.person.notes}}<br>
+
+<h3>User Login Details</h3>
+Username: {{this.person.username}}<br>
+Password: ??? <br>
+User Last Login: {{this.person.last_login}}<br>
+Disabled: {{this.person.disabled}}<br>
+
+<h3>Additional Record Details</h3>
+Created: {{this.person.createdAt}}<br>
+Modified: {{this.person.updatedAt}}
+
+<br><br><br>
+<a href="/people/">Back</a>

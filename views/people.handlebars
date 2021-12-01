@@ -1,5 +1,5 @@
 <h1>People</h1>
-
+<a href="/people/new">New</a>
 <table>
     <thead>
         <tr>
@@ -21,7 +21,7 @@
             <td>{{dataValues.nickname}}</td>
             <td><a href="mailto:{{dataValues.email}}">{{dataValues.email}}</a></td>
             <td>{{dataValues.department_id}}</td>
-            <td><a href="/people/edit/{{dataValues.id}}">Edit</a></td>
+            <td><a href="/people/view/{{dataValues.id}}">View</a></td>
         </tr>
         {{/each}}
     </tbody>

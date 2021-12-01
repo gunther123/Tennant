@@ -1,0 +1,11 @@
+<h1>New Department</h1>
+
+<div id="errDiv" style="background-color: #ffb0b0; padding: 10px; display: none;"><span id="errorText"></span></div>
+<div id="informDiv" style="background-color: #daffb0; padding: 10px; display: none;"><span id="informText"></span> <a id="informLink" href="#">View Department</a></div>
+
+<form name="newDept" onsubmit="return false;">
+  <label for="dname">Department Name:</label><br>
+  <input type="text" id="dname" name="dname" value=""><br><br>
+  <input type="button" value="Submit" onclick="createDepartment()">
+  <a href="/departments">Cancel</a>
+</form>
