@@ -1,5 +1,43 @@
 console.log('✔️ Tennant JS Script Loaded');
 
+function createTimecard() {
+    let title = document.getElementById("title").value;
+    let individual = document.getElementById("individual").value;
+    let hours = document.getElementById("hours").value;
+    let notes = document.getElementById("notes").value;
+    /*theData = {title, individual, hours, notes}
+    console.log(theData);*/
+
+
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify({
+        "title": title,
+        "hours": hours,
+        "notes": notes,
+        "individual_id": individual
+    });
+
+    var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
+
+    fetch("http://localhost:3001/api/timecards", requestOptions)
+        .then(response => response.text())
+        .then(result => {
+            console.log(JSON.parse(result))
+            let userMessage = "Timecard # " + JSON.parse(result).id + " created."
+            //let userMessage = "Individual created."
+            let userLink = "/timecards/view/" + JSON.parse(result).id
+            itemCreatedNotify(userMessage, userLink);
+        })
+        .catch(error => console.log('error', error));
+}
+
 function createIndividual() {
     //person data
     let fname = document.getElementById("fname").value;
@@ -22,11 +60,11 @@ function createIndividual() {
         itemErrorNotify("First Name cannot be left blank, or is too long.")
     else if (lname.length == 0 || lname.length > 255)
         itemErrorNotify("Last Name cannot be left blank, or is too long.")
-    else if (startdate.length == 0 )
+    else if (startdate.length == 0)
         itemErrorNotify("Start date must be set")
     else if (email.length == 0 || email.length > 255)
         itemErrorNotify("Email must be populated, or is too long.")
-    else if (department.length == 0 )
+    else if (department.length == 0)
         itemErrorNotify("Department cannot be left blank")
     else if (username.length == 0 || username.length > 255)
         itemErrorNotify("Username cannot be left blank, or is too long.")
@@ -73,7 +111,14 @@ function createIndividual() {
     }
 }
 
-function testData() {
+function testTimecardData() {
+    document.getElementById("title").value = "Planning for holiday party";
+    document.getElementById("hours").value = 10;
+    document.getElementById("individual").value = 1;
+    document.getElementById("notes").value = "Some fun notes";
+}
+
+function testIndvData() {
     // This is for testing, and can be removed for prod
     document.getElementById("fname").value = "David";
     document.getElementById("lname").value = "Clark";

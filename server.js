@@ -33,7 +33,16 @@ app.get('/timecards', function (req, res) {
     });
 });
 app.get('/timecards/new', function (req, res) {
-  res.render('timecards/new');
+  Individual.findAll()
+    .then(dbGetData => {
+      res.render('timecards/new', { people: dbGetData })
+      //console.log(dbGetData)
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+  //res.render('timecards/new');
 });
 app.get('/timecards/view/:id', function (req, res) {
   // Get single timecard
