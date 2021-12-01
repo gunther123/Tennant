@@ -1,14 +1,106 @@
 //Require all node modules
 const path = require('path');
 const routes = require('./controllers/');
-const express = require('express');
 const sequelize = require('./config/connection')
-// const exphbs = require('express-handlebars');
-// const hbs = exphbs.create({})
+var express = require('express');
+const app = express();
+const { Individual, Department, Timecard } = require('./models');
 
 //Middleware setup
-const app = express();
 const PORT = process.env.PORT || 3001;
+
+//Load the handlebars module
+var exphbs = require('express-handlebars');
+var hbs = exphbs.create({ /* config */ });
+
+// Register `hbs.engine` with the Express app.
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
+
+app.get('/', function (req, res) {
+    res.render('home');
+});
+app.get('/timecards', function (req, res) {
+    // Find all Department's
+    Timecard.findAll()
+      .then(dbGetData => { res.render('timecards', {timecard: dbGetData})
+      //console.log(dbGetData)
+    })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+});
+app.get('/timecards/edit/:id', function (req, res) {
+    // Get single timecard
+    Timecard.findOne({
+        where: {
+          id: req.params.id
+        }
+      })
+      .then(dbGetData => { res.render('timecards/edit', {timecard: dbGetData.dataValues})
+      //console.log(dbGetData)
+    })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+});
+app.get('/departments', function (req, res) {
+    // Find all Department's
+    Department.findAll()
+      .then(dbGetData => { res.render('departments', {department: dbGetData})
+      //console.log(dbGetData)
+    })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+    
+});
+app.get('/departments/edit/:id', function (req, res) {
+    // Get single department
+    Department.findOne({
+        where: {
+          id: req.params.id
+        }
+      })
+      .then(dbGetData => { res.render('departments/edit', {department: dbGetData.dataValues})
+      //console.log(dbGetData)
+    })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+});
+
+app.get('/people', function (req, res) {
+    // Get all individuals
+    Individual.findAll()
+      .then(dbGetData => { res.render('people', {people: dbGetData})
+      //console.log(dbGetData)
+    })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+});
+app.get('/people/edit/:id', function (req, res) {
+    // Get single individual
+    Individual.findOne({
+        where: {
+          id: req.params.id
+        }
+      })
+      .then(dbGetData => { res.render('people/edit', {person: dbGetData.dataValues})
+      //console.log(dbGetData)
+    })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+});
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -17,8 +109,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(routes);
 
 sequelize.sync({ force: false }).then(() => {
-//Start server
-app.listen(PORT, () => {
-    console.log(`App listening on port ${PORT}!`);
+    //Start server
+    app.listen(PORT, () => {
+        console.log(`*** Tennant Running! ***\n🚀 App listening on http://localhost:${PORT}!\n*********************`);
     })
 });
+
+
+    // res.render('people', { people: [
+    //     { id: 1, first: "Lowell", last: "Bennett", email: "LowellABennett@jourrapide.com" },
+    //     { id: 2, first: "Diane", last: "Shea", email: "DianeWShea@armyspy.com" },
+    //     { id: 5, first: "Jarrod", last: "Spoon", email: "JarrodDSpoon@dayrep.com" }
+    // ]});

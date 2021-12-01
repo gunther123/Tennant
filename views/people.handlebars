@@ -1,0 +1,28 @@
+<h1>People</h1>
+
+<table>
+    <thead>
+        <tr>
+            {{!-- <th></th> --}}
+            <th>First</th>
+            <th>Last</th>
+            <th>Nickname</th>
+            <th>Email</th>
+            <th>Department</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each this.people}}
+        <tr>
+            {{!-- <td>{{id}}</td> --}}
+            <td>{{dataValues.first_name}}</td>
+            <td>{{dataValues.last_name}}</td>
+            <td>{{dataValues.nickname}}</td>
+            <td><a href="mailto:{{dataValues.email}}">{{dataValues.email}}</a></td>
+            <td>{{dataValues.department_id}}</td>
+            <td><a href="/people/edit/{{dataValues.id}}">Edit</a></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
