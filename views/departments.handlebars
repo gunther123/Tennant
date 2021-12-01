@@ -1,1 +1,20 @@
 <h1>Departments</h1>
+
+<table>
+    <thead>
+        <tr>
+            {{!-- <th></th> --}}
+            <th>Department</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each this.department}}
+        <tr>
+            {{!-- <td>{{id}}</td> --}}
+            <td>{{dataValues.name}}</td>
+            <td><a href="/departments/edit/{{dataValues.id}}">Edit</a></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

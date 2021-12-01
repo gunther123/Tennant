@@ -4,7 +4,7 @@ const routes = require('./controllers/');
 const sequelize = require('./config/connection')
 var express = require('express');
 const app = express();
-const { Individual } = require('./models');
+const { Individual, Department, Timecard } = require('./models');
 
 //Middleware setup
 const PORT = process.env.PORT || 3001;
@@ -21,23 +21,86 @@ app.get('/', function (req, res) {
     res.render('home');
 });
 app.get('/timecards', function (req, res) {
-    res.render('timecards');
-});
-app.get('/departments', function (req, res) {
-    res.render('departments');
-});
-
-app.get('/people', function (req, res) {
-    // Get all individuals
-    Individual.findAll()
-      .then(dbGetData => { res.render('people', {people: dbGetData})
-      console.log(dbGetData)
+    // Find all Department's
+    Timecard.findAll()
+      .then(dbGetData => { res.render('timecards', {timecard: dbGetData})
+      //console.log(dbGetData)
     })
       .catch(err => {
         console.log(err);
         res.status(500).json(err);
       });
 });
+app.get('/timecards/edit/:id', function (req, res) {
+    // Get single timecard
+    Timecard.findOne({
+        where: {
+          id: req.params.id
+        }
+      })
+      .then(dbGetData => { res.render('timecards/edit', {timecard: dbGetData.dataValues})
+      //console.log(dbGetData)
+    })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+});
+app.get('/departments', function (req, res) {
+    // Find all Department's
+    Department.findAll()
+      .then(dbGetData => { res.render('departments', {department: dbGetData})
+      //console.log(dbGetData)
+    })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+    
+});
+app.get('/departments/edit/:id', function (req, res) {
+    // Get single department
+    Department.findOne({
+        where: {
+          id: req.params.id
+        }
+      })
+      .then(dbGetData => { res.render('departments/edit', {department: dbGetData.dataValues})
+      //console.log(dbGetData)
+    })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+});
+
+app.get('/people', function (req, res) {
+    // Get all individuals
+    Individual.findAll()
+      .then(dbGetData => { res.render('people', {people: dbGetData})
+      //console.log(dbGetData)
+    })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+});
+app.get('/people/edit/:id', function (req, res) {
+    // Get single individual
+    Individual.findOne({
+        where: {
+          id: req.params.id
+        }
+      })
+      .then(dbGetData => { res.render('people/edit', {person: dbGetData.dataValues})
+      //console.log(dbGetData)
+    })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+});
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

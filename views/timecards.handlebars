@@ -1,1 +1,24 @@
 <h1>Timecards</h1>
+
+<table>
+    <thead>
+        <tr>
+            {{!-- <th></th> --}}
+            <th>Title</th>
+            <th>Hours</th>
+            <th>Indi</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each this.timecard}}
+        <tr>
+            {{!-- <td>{{id}}</td> --}}
+            <td>{{dataValues.title}}</td>
+            <td>{{dataValues.hours}} hours</td>
+            <td>{{dataValues.individual_id}}</td>
+            <td><a href="/timecards/edit/{{dataValues.id}}">Edit</a></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

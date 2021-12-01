@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
 
 //Get specific Individual by Id
 router.get('/:id', (req, res) => {
-    Department.findOne({
+    Individual.findOne({
       where: {
         id: req.params.id
       }
