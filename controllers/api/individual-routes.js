@@ -32,4 +32,27 @@ router.get('/:id', (req, res) => {
       });
   });
 
+//Create new Dept
+router.post('/', (req, res) => {
+  Individual.create({
+    first_name: req.body.first_name,
+    last_name: req.body.last_name,
+    nickname: req.body.nickname,
+    start_date: req.body.start_date,
+    department_id: req.body.department_id,
+    email: req.body.email,
+    last_modified: req.body.last_modified,
+    username: req.body.username,
+    password: req.body.password,
+    disabled: req.body.disabled,
+    last_login: req.body.last_login,
+    notes: req.body.notes
+    })
+    .then(dbPostData => res.json(dbPostData))
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+  });
+
 module.exports = router;
