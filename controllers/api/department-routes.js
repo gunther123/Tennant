@@ -32,4 +32,17 @@ router.get('/:id', (req, res) => {
       });
   });
 
+  //Create new Dept
+router.post('/', (req, res) => {
+  Department.create({
+    name: req.body.name
+    })
+    .then(dbCatData => res.json(dbCatData))
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+  });
+  
+
 module.exports = router;

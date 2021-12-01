@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
 
 //Get specific Timecard
 router.get('/:id', (req, res) => {
-    Department.findOne({
+    Timecard.findOne({
       where: {
         id: req.params.id
       }

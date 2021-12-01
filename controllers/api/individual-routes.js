@@ -14,14 +14,14 @@ router.get('/', (req, res) => {
 
 //Get specific Individual by Id
 router.get('/:id', (req, res) => {
-    Department.findOne({
+    Individual.findOne({
       where: {
         id: req.params.id
       }
     })
       .then(dbGetData => {
         if (!dbGetData) {
-          res.status(404).json({ message: 'No timecard found'}); 
+          res.status(404).json({ message: 'No individual found'}); 
           return; 
         }
         res.json(dbGetData);
