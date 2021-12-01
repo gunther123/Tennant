@@ -32,7 +32,7 @@ router.get('/:id', (req, res) => {
       });
   });
 
-//Create new Dept
+//Create new Individual
 router.post('/', (req, res) => {
   Individual.create({
     first_name: req.body.first_name,

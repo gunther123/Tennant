@@ -32,5 +32,20 @@ router.get('/:id', (req, res) => {
       });
   });
 
+//Create new Timecard
+router.post('/', (req, res) => {
+  Timecard.create({
+    title: req.body.title,
+    hours: req.body.hours,
+    notes: req.body.notes,
+    individual_id: req.body.individual_id
+    })
+    .then(dbPostData => res.json(dbPostData))
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+  });
+
 
 module.exports = router;
