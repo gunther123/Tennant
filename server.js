@@ -4,6 +4,7 @@ const routes = require('./controllers/');
 const sequelize = require('./config/connection')
 var express = require('express');
 const app = express();
+const { Individual } = require('./models');
 
 //Middleware setup
 const PORT = process.env.PORT || 3001;
@@ -25,8 +26,17 @@ app.get('/timecards', function (req, res) {
 app.get('/departments', function (req, res) {
     res.render('departments');
 });
+
 app.get('/people', function (req, res) {
-    res.render('people');
+    // Get all individuals
+    Individual.findAll()
+      .then(dbGetData => { res.render('people', {people: dbGetData})
+      console.log(dbGetData)
+    })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
 });
 
 app.use(express.json());
@@ -41,3 +51,10 @@ sequelize.sync({ force: false }).then(() => {
         console.log(`*** Tennant Running! ***\n🚀 App listening on http://localhost:${PORT}!\n*********************`);
     })
 });
+
+
+    // res.render('people', { people: [
+    //     { id: 1, first: "Lowell", last: "Bennett", email: "LowellABennett@jourrapide.com" },
+    //     { id: 2, first: "Diane", last: "Shea", email: "DianeWShea@armyspy.com" },
+    //     { id: 5, first: "Jarrod", last: "Spoon", email: "JarrodDSpoon@dayrep.com" }
+    // ]});
