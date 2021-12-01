@@ -25,10 +25,11 @@ Timecard.init(
         },
         deleted: {
             type: DataTypes.BOOLEAN,
-            allowNull: false
+            allowNull: false,
+            defaultValue: false
         },
         last_modified: {
-            type: DataTypes.DATE,
+            type: DataTypes.DATEONLY,
             allowNull: true
         },
         individual_id: {
