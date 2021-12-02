@@ -72,7 +72,7 @@ Individual.init(
             allowNull: true
         },
         notes: {
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
             allowNull: true
         }
     },

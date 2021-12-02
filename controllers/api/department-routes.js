@@ -52,7 +52,7 @@ router.post('/', (req, res) => {
   });
 
 router.put('/:id', (req, res) => {
-  // update a category by its `id` value
+  // update a Department by its `id` value
   Department.update(req.body, {
     where: {
         id: req.params.id
