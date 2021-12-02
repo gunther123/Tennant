@@ -1,34 +1,44 @@
-<h1>New Timecard</h1>
+{{> breadcrumbs level1_txt='Timecards' level1_url='/timecards' currLvl_txt='New Timecard' }}
+<h1 class="title">New Timecard</h1>
 
-<div id="errDiv" style="background-color: #ffb0b0; padding: 10px; display: none;"><span id="errorText"></span></div>
-<div id="informDiv" style="background-color: #daffb0; padding: 10px; display: none;"><span id="informText"></span> <a
+<div id="errDiv" class="notification is-danger" style="display: none;"><span id="errorText"></span></div>
+<div id="informDiv" class="notification is-primary" style="display: none;"><span id="informText"></span> <a
         id="informLink" href="#">View Timecard</a></div>
 
-<form name="newPerson">
-    <h3>Basic Information</h3>
-    <label for="title">Title:</label><br>
-    <input type="text" id="title" name="title" value="" placeholder="Processed Paperwork"><br>
+<form name="newTimecard">
 
-    <label for="individual">Person:</label><br>
-    <select name="individual" id="individual">
-        <!-- Iterate through each person and render into select form. -->
-        {{#each this.people}}
-        <option value={{dataValues.id}}>{{dataValues.first_name}} {{dataValues.last_name}} {{#unless nickname}}({{dataValues.nickname}}){{/unless}}</option>
-        {{/each}}
-    </select><br>
-    <label for="date">Date:</label><br>
-    <input type="date" id="date" name="date" value="" disabled="1"><br>
-<label for="hours">Hours:</label><br>
-    <input type="text" id="hours" name="hours" value="" placeholder="5"><br>
+    <div class="columns">
+        <div class="column">
+            <label for="title">Title:</label><br>
+            <input class="input" type="text" id="title" name="title" value="" placeholder="Processed Paperwork"><br>
 
-    <label for="notes">Notes:</label><br>
-    <textarea id="notes" name="notes" rows="4" cols="50"></textarea><br>
+            <label for="individual">Person:</label><br>
+            <div class="select">
+                <select class="select" name="individual" id="individual">
+                    <!-- Iterate through each person and render into select form. -->
+                    {{#each this.people}}
+                    <option value={{dataValues.id}}>{{dataValues.first_name}} {{dataValues.last_name}} {{#unless
+                        nickname}}({{dataValues.nickname}}){{/unless}}</option>
+                    {{/each}}
+                </select>
+            </div><br>
+            <label for="date">Date:</label><br>
+            <input class="input" type="date" id="date" name="date" value="" disabled="1"><br>
+        </div>
+        <div class="column">
+            <label for="hours">Hours:</label><br>
+            <input class="input" type="text" id="hours" name="hours" value="" placeholder="5"><br>
+
+            <label for="notes">Notes:</label><br>
+            <textarea class="textarea" id="notes" name="notes" rows="4" cols="50"></textarea><br>
+        </div>
+    </div>
 
 
-    <input type="button" value="Submit" onclick="createTimecard()">
+    <input class="button is-success" type="button" value="Submit" onclick="createTimecard()">
     <!-- Delete this test button for prod -->
-    <input type="button" value="Fill Test Data" onclick="testTimecardData()">
+    <input class="button" type="button" value="Fill Test Data" onclick="testTimecardData()">
     <!-- End Test Btn -->
-    <a href="/timecards">Cancel</a>
+    <a class="button" href="/timecards">Cancel</a>
 
 </form>

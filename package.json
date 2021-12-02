@@ -19,7 +19,7 @@
   "homepage": "https://github.com/gunther123/Tennant#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
-    "cypress": "^9.1.0",
+    "bulma": "^0.9.3",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-handlebars": "^6.0.2",

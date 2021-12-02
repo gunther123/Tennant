@@ -1,9 +1,10 @@
+{{> breadcrumbs level1_txt='Departments' level1_url='/departments' currLvl_txt=this.department.name }}
 
-<h1>Department: {{this.department.name}}</h1>
+<h1 class="title">Department: {{this.department.name}}</h1>
 
-<h3>Additional Record Details</h3>
+<h3 class="subtitle">Additional Record Details</h3>
 Created: {{this.department.createdAt}}<br>
 Modified: {{this.department.updatedAt}}
 
-<br><br><br>
+<hr>
 <a href="/departments/">Back</a>

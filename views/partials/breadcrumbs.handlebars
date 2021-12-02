@@ -1,0 +1,11 @@
+<nav class="breadcrumb has-arrow-separator" aria-label="breadcrumbs">
+    <ul>
+        <li><a href="/">Tennant</a></li>
+        {{#if level1_txt}}<li><a href="{{level1_url}}">{{level1_txt}}</a></li>{{/if}}
+        {{#if level2_txt}}<li><a href="{{level2_url}}">{{level2_txt}}</a></li>{{/if}}
+        {{#if level3_txt}}<li><a href="{{level3_url}}">{{level3_txt}}</a></li>{{/if}}
+        {{#if level4_txt}}<li><a href="{{level4_url}}">{{level4_txt}}</a></li>{{/if}}
+        <li class="is-active"><a href="/departments" aria-current="page">{{currLvl_txt}}</a></li>
+
+    </ul>
+</nav>

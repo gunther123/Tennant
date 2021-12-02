@@ -1,2 +1,51 @@
-<h1>Dashboard</h1>
-Select a navigation item to get started. ☝️
+{{> breadcrumbs currLvl_txt='Home' }}
+<h1 class="title">Dashboard</h1>
+
+<nav class="level">
+  <div class="level-item has-text-centered">
+    <div>
+      <p class="heading">Individuals Tracked</p>
+      <p class="title">30</p>
+    </div>
+  </div>
+  <div class="level-item has-text-centered">
+    <div>
+      <p class="heading">Departments</p>
+      <p class="title">7</p>
+    </div>
+  </div>
+  <div class="level-item has-text-centered">
+    <div>
+      <p class="heading">Timecards</p>
+      <p class="title">336</p>
+    </div>
+  </div>
+  <div class="level-item has-text-centered">
+    <div>
+      <p class="heading">Total Hours</p>
+      <p class="title">789</p>
+    </div>
+  </div>
+</nav>
+
+<h5 class="title is-5">Previous 5 Timecards Logged</h5>
+<table class="table is-fullwidth is-striped">
+    <thead>
+        <tr>
+            <th>Timecard</th>
+            <th>Hours</th>
+            <th>Person</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each this.department}}
+        <tr>
+            <td>{{dataValues.name}}</td>
+            <td>{{dataValues.name}}</td>
+            <td>{{dataValues.name}}</td>
+            <td><a href="/departments/view/{{dataValues.id}}">Details</a></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

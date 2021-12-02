@@ -1,9 +1,22 @@
-<h1>Timecards</h1>
-<a href="/timecards/new">New</a>
-<table>
+{{> breadcrumbs currLvl_txt='Timecards' }}
+
+<nav class="level">
+  <!-- Left side -->
+  <div class="level-left">
+    <div class="level-item">
+      <h1 class="title">Timecards</h1>
+    </div>
+  </div>
+
+  <!-- Right side -->
+  <div class="level-right">
+    <p class="level-item"><a class="button is-success" href="./new">New</a></p>
+  </div>
+</nav>
+<table class="table is-fullwidth is-striped">
     <thead>
         <tr>
-            <th>Timecard</th>
+            <th span="1" style="width: 16px;">Timecard</th>
             <th>Title</th>
             <th>Hours</th>
             <th>Individual</th>
@@ -22,3 +35,13 @@
         {{/each}}
     </tbody>
 </table>
+
+
+<div class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-content">
+    <!-- Any other Bulma elements you want -->
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis explicabo neque sed possimus, mollitia dolor tenetur officia quo assumenda provident repellat consequatur necessitatibus in doloribus autem eos inventore eius veniam?
+  </div>
+  <button class="modal-close is-large" aria-label="close"></button>
+</div>
