@@ -1,0 +1,18 @@
+
+<h1>Editing Timecard {{this.timecard.id}}: ({{this.timecard.title}})</h1>
+timecardID: <kbd>{{this.timecard.id}}</kbd><br>
+Title: {{this.timecard.title}}<br>
+Hours: {{this.timecard.hours}}<br>
+<!-- TODO: Refer -->
+Individual: {{this.timecard.individual_id}} <a href="/people/edit/{{this.timecard.individual_id}}">(Peek)</a><br>
+<hr>
+
+
+Notes: {{this.timecard.notes}}<br>
+
+<hr>
+Created: {{this.timecard.createdAt}}<br>
+Modified: {{this.timecard.updatedAt}}
+
+<br><br><br>
+<a href="/timecards/">Back</a>

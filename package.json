@@ -18,9 +18,11 @@
   },
   "homepage": "https://github.com/gunther123/Tennant#readme",
   "dependencies": {
-    "cypress": "^9.1.0",
+    "bcrypt": "^5.0.1",
+    "bulma": "^0.9.3",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "handlebars": "^4.7.7",
+    "express-handlebars": "^6.0.2",
     "mysql2": "^2.3.3",
     "sequelize": "^6.12.0-alpha.1"
   },

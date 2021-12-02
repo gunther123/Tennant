@@ -1,0 +1,24 @@
+
+<h1 class="title">Timecard {{this.timecard.id}}: {{this.timecard.title}}</h1>
+
+<div class="columns">
+  <div class="column">
+      <h3 class="subtitle">Details</h3>
+    timecardID: <kbd>{{this.timecard.id}}</kbd><br>
+Title: {{this.timecard.title}}<br>
+Hours: {{this.timecard.hours}}<br>
+<!-- TODO: Refer -->
+Individual: {{this.timecard.individual_id}} <a href="/people/view/{{this.timecard.individual_id}}">(View)</a><br>
+  </div>
+  <div class="column">
+      <h3 class="subtitle">Notes</h3>
+    {{this.timecard.notes}}<br>
+  </div>
+</div>
+
+<h3 class="subtitle">Additional Record Details</h3>
+Created: {{this.timecard.createdAt}}<br>
+Modified: {{this.timecard.updatedAt}}
+
+<hr> 
+<a href="/timecards/">Back</a>
