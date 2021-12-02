@@ -20,7 +20,7 @@ Timecard.init(
             allowNull: true
         },
         notes: {
-            type: DataTypes.TEXT,
+            type: DataTypes.STRING,
             allowNull: true
         },
         deleted: {
