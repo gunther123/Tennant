@@ -4,7 +4,11 @@ const { Individual } = require('../../models');
 // Get all Individuals
 router.get('/', (req, res) => {
     // Find all Timecards
-    Individual.findAll()
+    Individual.findAll({
+      where: {
+        disabled:false
+      }
+    })
       .then(dbGetData => res.json(dbGetData))
       .catch(err => {
         console.log(err);
@@ -54,5 +58,27 @@ router.post('/', (req, res) => {
         res.status(500).json(err);
     });
   });
+
+//Update Individual
+router.put('/:id', (req, res) => {
+  // update an Individual by its `id` value
+  Individual.update(req.body, {
+    where: {
+        id: req.params.id
+    }
+  })
+    .then(dbPUTData => {
+        if (!dbPUTData[0]) {
+            res.status(404).json({ message: 'No Individual found'});
+            return;
+        }
+        res.json(dbPUTData + " record updated");
+  })
+    .catch(err => {
+        console.log(err); 
+        res.status(500).json(err);
+  });
+});
+
 
 module.exports = router;
