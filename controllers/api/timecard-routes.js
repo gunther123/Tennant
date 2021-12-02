@@ -4,7 +4,11 @@ const { Timecard } = require('../../models');
 // Get all Timecards
 router.get('/', (req, res) => {
     // Find all Timecards
-    Timecard.findAll()
+    Timecard.findAll({
+      where: {
+        deleted: false
+      }
+    })
       .then(dbGetData => res.json(dbGetData))
       .catch(err => {
         console.log(err);
@@ -47,5 +51,25 @@ router.post('/', (req, res) => {
     });
   });
 
+//Update Timecard
+router.put('/:id', (req, res) => {
+    // update a Department by its `id` value
+    Timecard.update(req.body, {
+      where: {
+          id: req.params.id
+      }
+    })
+      .then(dbPUTData => {
+          if (!dbPUTData[0]) {
+              res.status(404).json({ message: 'No Timecard found'});
+              return;
+          }
+          res.json(dbPUTData + " record updated");
+    })
+      .catch(err => {
+          console.log(err); 
+          res.status(500).json(err);
+    });
+  });
 
 module.exports = router;

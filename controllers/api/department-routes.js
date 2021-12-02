@@ -4,7 +4,12 @@ const { Department } = require('../../models');
 // Get all Dept's Route
 router.get('/', (req, res) => {
     // Find all Department's
-    Department.findAll()
+    Department.findAll({
+      //Only show active Depts
+      where: {
+        deleted: false
+      }
+    })
       .then(dbGetData => res.json(dbGetData))
       .catch(err => {
         console.log(err);
@@ -45,6 +50,24 @@ router.post('/', (req, res) => {
         res.status(500).json(err);
     });
   });
-  
+router.put('/:id', (req, res) => {
+  // update a Department by its `id` value
+  Department.update(req.body, {
+    where: {
+        id: req.params.id
+    }
+  })
+    .then(dbPUTData => {
+        if (!dbPUTData[0]) {
+            res.status(404).json({ message: 'No department found'});
+            return;
+        }
+        res.json(dbPUTData + " record updated");
+  })
+    .catch(err => {
+        console.log(err); 
+        res.status(500).json(err);
+  });
+});  
 
 module.exports = router;
