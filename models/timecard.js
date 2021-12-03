@@ -28,6 +28,10 @@ Timecard.init(
             allowNull: false,
             defaultValue: false
         },
+        date: {
+            type: DataTypes.DATEONLY,
+            allowNull: false
+        },
         last_modified: {
             type: DataTypes.DATEONLY,
             allowNull: true
