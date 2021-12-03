@@ -22,7 +22,8 @@
             <th>Nickname</th>
             <th>Email</th>
             <th>Department</th>
-            <th>Actions</th>
+            <th>Flags</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -34,7 +35,8 @@
             <td>{{dataValues.nickname}}</td>
             <td><a href="mailto:{{dataValues.email}}">{{dataValues.email}}</a></td>
             <td>{{dataValues.department_id}}</td>
-            <td><a href="/people/view/{{dataValues.id}}">View</a></td>
+            <td>{{#if dataValues.disabled}}<span class="tag is-danger">Disabled</span>{{/if}}</td>
+            <td><a class="button is-small" href="./view/{{dataValues.id}}">View</a> <a class="button is-small" href="./edit/{{dataValues.id}}">Edit</a></td>
         </tr>
         {{/each}}
     </tbody>

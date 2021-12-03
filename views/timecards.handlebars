@@ -16,11 +16,12 @@
 <table class="table is-fullwidth is-striped">
     <thead>
         <tr>
-            <th span="1" style="width: 16px;">Timecard</th>
+            <th style="width: 16px;">Timecard</th>
             <th>Title</th>
             <th>Hours</th>
             <th>Individual</th>
-            <th>Actions</th>
+            <th>Flags</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -30,7 +31,8 @@
             <td>{{dataValues.title}}</td>
             <td>{{dataValues.hours}} hours</td>
             <td>{{dataValues.individual_id}}</td>
-            <td><a href="/timecards/view/{{dataValues.id}}">View</a></td>
+            <td>{{#if dataValues.notes}}<i class="fas fa-comment-alt"></i>{{/if}}</td>
+            <td><a class="button is-small" href="./view/{{dataValues.id}}">View</a> <a class="button is-small" href="./edit/{{dataValues.id}}">Edit</a></td>
         </tr>
         {{/each}}
     </tbody>
