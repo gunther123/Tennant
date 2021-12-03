@@ -42,6 +42,7 @@ router.post('/', (req, res) => {
     title: req.body.title,
     hours: req.body.hours,
     notes: req.body.notes,
+    date: req.body.date,
     individual_id: req.body.individual_id
     })
     .then(dbPostData => res.json(dbPostData))
