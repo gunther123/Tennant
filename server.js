@@ -24,7 +24,7 @@ app.get('/timecards', function (req, res) {
   // Find all Department's
   Timecard.findAll()
     .then(dbGetData => {
-      res.render('timecards', { timecard: dbGetData })
+      res.render('timecards', { timecard: dbGetData.reverse() })
       //console.log(dbGetData)
     })
     .catch(err => {
