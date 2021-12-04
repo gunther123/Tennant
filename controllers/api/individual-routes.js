@@ -25,6 +25,10 @@ router.get('/:id', (req, res) => {
     Individual.findOne({
       where: {
         id: req.params.id
+      },
+      include: {
+        model: Department,
+        attributes: ['name']
       }
     })
       .then(dbGetData => {
