@@ -60,6 +60,22 @@ app.get('/timecards/view/:id', function (req, res) {
       res.status(500).json(err);
     });
 });
+app.get('/timecards/edit/:id', function (req, res) {
+  // Get single timecard
+  Timecard.findOne({
+    where: {
+      id: req.params.id
+    }
+  })
+    .then(dbGetData => {
+      res.render('timecards/edit', { timecard: dbGetData.dataValues })
+      //console.log(dbGetData)
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
 app.get('/departments', function (req, res) {
   // Find all Department's
   Department.findAll()
@@ -86,6 +102,23 @@ app.get('/departments/view/:id', function (req, res) {
   })
     .then(dbGetData => {
       res.render('departments/view', { department: dbGetData.dataValues })
+      //console.log(dbGetData)
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+app.get('/departments/edit/:id', function (req, res) {
+  // Get single department
+  Department.findOne({
+    where: {
+      id: req.params.id
+    }
+  })
+    .then(dbGetData => {
+      res.render('departments/edit', { department: dbGetData.dataValues })
       //console.log(dbGetData)
     })
     .catch(err => {
@@ -129,6 +162,23 @@ app.get('/people/view/:id', function (req, res) {
   })
     .then(dbGetData => {
       res.render('people/view', { person: dbGetData.dataValues })
+      //console.log(dbGetData)
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+app.get('/people/edit/:id', function (req, res) {
+  // Get single individual
+  Individual.findOne({
+    where: {
+      id: req.params.id
+    }
+  })
+    .then(dbGetData => {
+      res.render('people/edit', { person: dbGetData.dataValues })
       //console.log(dbGetData)
     })
     .catch(err => {

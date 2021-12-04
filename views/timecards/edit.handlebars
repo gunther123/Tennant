@@ -1,18 +1,44 @@
-<h1>Editing Timecard {{this.timecard.id}}: ({{this.timecard.title}})</h1>
-timecardID: <kbd>{{this.timecard.id}}</kbd><br>
-Title: {{this.timecard.title}}<br>
-Hours: {{this.timecard.hours}}<br>
-<!-- TODO: Refer -->
-Individual: {{this.timecard.individual_id}} <a href="/people/edit/{{this.timecard.individual_id}}">(Peek)</a><br>
-<hr>
+{{> breadcrumbs level1_txt='Timecards' level1_url='/timecards' currLvl_txt='Edit Timecard' }}
+<h1 class="title">Edit Timecard</h1>
+
+<div id="errDiv" class="notification is-danger" style="display: none;"><span id="errorText"></span></div>
+<div id="informDiv" class="notification is-primary" style="display: none;"><span id="informText"></span> <a
+        id="informLink" href="#">View Timecard</a></div>
+
+<form name="newTimecard">
+
+    <div class="columns">
+        <div class="column">
+            <label for="title">Title:</label><br>
+            <input class="input" type="text" id="title" name="title" value="" placeholder="Processed Paperwork"><br>
+
+            <label for="individual">Person:</label><br>
+            <div class="select">
+                <select class="select" name="individual" id="individual">
+                    <!-- Iterate through each person and render into select form. -->
+                    {{#each this.people}}
+                    <option value={{dataValues.id}}>{{dataValues.first_name}} {{dataValues.last_name}} {{#unless
+                        nickname}}({{dataValues.nickname}}){{/unless}}</option>
+                    {{/each}}
+                </select>
+            </div><br>
+            <label for="date">Date:</label><br>
+            <input class="input" type="date" id="date" name="date" value="" disabled="1"><br>
+        </div>
+        <div class="column">
+            <label for="hours">Hours:</label><br>
+            <input class="input" type="text" id="hours" name="hours" value="" placeholder="5"><br>
+
+            <label for="notes">Notes:</label><br>
+            <textarea class="textarea" id="notes" name="notes" rows="4" cols="50"></textarea><br>
+        </div>
+    </div>
 
 
-Notes: {{this.timecard.notes}}<br>
+    <input class="button is-success" type="button" value="Submit" onclick="createTimecard()">
+    <!-- Delete this test button for prod -->
+    <input class="button" type="button" value="Fill Test Data" onclick="testTimecardData()">
+    <!-- End Test Btn -->
+    <a class="button" href="/timecards">Cancel</a>
 
-<hr>
-Created: {{this.timecard.createdAt}}<br>
-Modified: {{this.timecard.updatedAt}}
-
-<br><br><br>
-
-<a href="/timecards/">Back</a>
+</form>
