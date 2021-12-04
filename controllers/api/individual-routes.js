@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Individual } = require('../../models');
+const { Individual, Department } = require('../../models');
 
 // Get all Individuals
 router.get('/', (req, res) => {
@@ -7,6 +7,10 @@ router.get('/', (req, res) => {
     Individual.findAll({
       where: {
         disabled:false
+      },
+      include: {
+        model: Department,
+        attributes: ['name']
       }
     })
       .then(dbGetData => res.json(dbGetData))
