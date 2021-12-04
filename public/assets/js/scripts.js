@@ -5,6 +5,7 @@ function createTimecard() {
     let individual = document.getElementById("individual").value;
     let hours = document.getElementById("hours").value;
     let notes = document.getElementById("notes").value;
+    let cardDate = document.getElementById("date").value;
     /*theData = {title, individual, hours, notes}
     console.log(theData);*/
 
@@ -16,7 +17,8 @@ function createTimecard() {
         "title": title,
         "hours": hours,
         "notes": notes,
-        "individual_id": individual
+        "individual_id": individual,
+        "date": cardDate
     });
 
     var requestOptions = {
