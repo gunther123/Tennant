@@ -3,3 +3,7 @@
 .dash_btn_float {
     float: right;
   }
+
+.is-disabled {
+  color: #d4d4d4;
+}

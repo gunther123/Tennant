@@ -4,14 +4,14 @@
   <!-- Left side -->
   <div class="level-left">
     <div class="level-item">
-      <h1 class="title">Department: {{this.department.name}}</h1>
+      <h1 class="title">Department: {{this.department.name}} {{#if this.department.deleted}}<span class="tag is-danger">Deleted</span>{{/if}}</h1>
     </div>
   </div>
 
   <!-- Right side -->
   <div class="level-right">
-    <p class="level-item"><a class="button" href="./edit">Edit</a></p>
-    <p class="level-item"><a class="button is-danger" href="./delete">Delete</a></p>
+    <p class="level-item"><a class="button" href="../edit/{{this.department.id}}">Edit</a></p>
+    <!--<p class="level-item"><a class="button is-danger" href="./delete">Delete</a></p>-->
   </div>
 </nav>
 

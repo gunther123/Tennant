@@ -9,19 +9,20 @@
 
     <div class="columns">
         <div class="column">
+            <label for="title">Id:</label><br>
+            <input class="input" type="text" id="timecardId" name="timecardId" disabled="1" value="{{this.timecard.id}}" placeholder="Processed Paperwork"><br>
             <label for="title">Title:</label><br>
             <input class="input" type="text" id="title" name="title" value="{{this.timecard.title}}" placeholder="Processed Paperwork"><br>
 
-            <label for="individual">Person:</label><br>
+            <!--<label for="individual">Person:</label><br>
             <div class="select">
                 <select class="select" name="individual" id="individual">
-                    <!-- Iterate through each person and render into select form. -->
                     {{#each this.people}}
                     <option value={{dataValues.id}}>{{dataValues.first_name}} {{dataValues.last_name}} {{#unless
                         nickname}}({{dataValues.nickname}}){{/unless}}</option>
                     {{/each}}
                 </select>
-            </div><br>
+            </div><br>-->
             <label for="date">Date:</label><br>
             <input class="input" type="date" id="date" name="date" value="{{this.timecard.date}}"><br>
         </div>
@@ -35,12 +36,29 @@
     </div>
 
 
-    <input class="button is-success" type="button" value="Edit" onclick="createTimecard()">
+    <input class="button is-success" type="button" value="Edit" onclick="editModalConfirm()">
     <!-- End Test Btn -->
-    <a class="button" href="/timecards">Cancel</a>
+    <a class="button" href="/timecards/">Cancel</a>
 
 </form>
 <hr>
 <h3 class="subtitle">Additional Record Details</h3>
 Created: {{this.timecard.createdAt}}<br>
 Last Modified: {{this.timecard.updatedAt}}
+
+<div id="editConfirmModal" class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Update Timecard?</p>
+      <button class="delete" aria-label="close" onclick="cancelEditModal()"></button>
+    </header>
+    <section class="modal-card-body">
+      <p>Updating this record will overwrite any data currently on that timecard, and cannot be reversed. If in doubt, Now is the time to go back and check your work.</p>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-warning" onclick="updateTimecard()">Save changes</button>
+      <button class="button" onclick="cancelEditModal()">Cancel</button>
+    </footer>
+  </div>
+</div>
