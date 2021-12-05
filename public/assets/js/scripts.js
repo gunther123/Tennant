@@ -156,7 +156,7 @@ function createDepartment() {
             redirect: 'follow'
         };
 
-        fetch("http://localhost:3001/api/departments/", requestOptions)
+        fetch("/api/departments/", requestOptions)
             .then(response => response.text())
             .then(result => {
                 console.log(JSON.parse(result).id)
