@@ -9,36 +9,48 @@ function createTimecard() {
     /*theData = {title, individual, hours, notes}
     console.log(theData);*/
 
-    var editModalOpen = false;
+    if (title.length == 0 || title.length > 255) {
+        itemErrorNotify("Title cannot be left blank, or is too long.")
+        cancelEditModal();
+    }
+    else if (hours.length == 0 || hours.length > 255) {
+        itemErrorNotify("Hours must have a value.")
+        cancelEditModal();
+    }
+    else if (cardDate == '') {
+        itemErrorNotify("Date must be set")
+        cancelEditModal();
+    } else {
 
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
 
-    var raw = JSON.stringify({
-        "title": title,
-        "hours": hours,
-        "notes": notes,
-        "individual_id": individual,
-        "date": cardDate
-    });
+        var raw = JSON.stringify({
+            "title": title,
+            "hours": hours,
+            "notes": notes,
+            "individual_id": individual,
+            "date": cardDate
+        });
 
-    var requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: raw,
-        redirect: 'follow'
-    };
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
 
-    fetch("/api/timecards", requestOptions)
-        .then(response => response.text())
-        .then(result => {
-            console.log(JSON.parse(result))
-            let userMessage = "Timecard # " + JSON.parse(result).id + " created."
-            //let userMessage = "Individual created."
-            let userLink = "/timecards/view/" + JSON.parse(result).id
-            itemCreatedNotify(userMessage, userLink);
-        })
-        .catch(error => console.log('error', error));
+        fetch("/api/timecards", requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                console.log(JSON.parse(result))
+                let userMessage = "Timecard # " + JSON.parse(result).id + " created."
+                //let userMessage = "Individual created."
+                let userLink = "/timecards/view/" + JSON.parse(result).id
+                itemCreatedNotify(userMessage, userLink);
+            })
+            .catch(error => console.log('error', error));
+    }
 }
 
 function createIndividual() {
@@ -284,4 +296,103 @@ function updateIndividual() {
 function cancelEditModal() {
     let element = document.getElementById("editConfirmModal");
     element.classList.remove("is-active");
+}
+
+
+function updateTimecard() {
+    let timecardId = document.getElementById("timecardId").value;
+    let title = document.getElementById("title").value;
+    let individual = document.getElementById("individual").value;
+    let hours = document.getElementById("hours").value;
+    let notes = document.getElementById("notes").value;
+    let cardDate = document.getElementById("date").value;
+
+    if (title.length == 0 || title.length > 255) {
+        itemErrorNotify("Title cannot be left blank, or is too long.")
+        cancelEditModal();
+    }
+    else if (hours.length == 0 || hours.length > 255) {
+        itemErrorNotify("Hours must have a value.")
+        cancelEditModal();
+    }
+    else if (cardDate == '') {
+        itemErrorNotify("Date must be set")
+        cancelEditModal();
+    } else {
+
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({
+            "title": title,
+            "hours": hours,
+            "notes": notes,
+            "date": cardDate,
+            "deleted": '1'
+        });
+
+        var requestOptions = {
+            method: 'PUT',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+
+        fetch("/api/timecards/" + timecardId, requestOptions)
+            .then(response => {
+                response.text();
+                let userMessage = "Timecard updated sucessfully!"
+                //let userMessage = "Individual created."
+                let userLink = "/timecards/view/" + timecardId
+                itemCreatedNotify(userMessage, userLink);
+            })
+            .then(result => console.log(result))
+            .catch(error => {
+                itemErrorNotify(error);
+                console.log('error', error)
+            });
+    }
+    cancelEditModal();
+}
+
+function updateDepartment() {
+    let deptId = document.getElementById("deptId").value;
+    let deptNameInput = document.getElementById("dname").value;
+    let deleted = document.getElementById("deleted").value;
+    if (deptNameInput.length == 0) {
+        itemErrorNotify("Department name cannot be blank")
+        cancelEditModal();
+    }
+    else if (deptNameInput.length > 255) {
+        itemErrorNotify("Department name too long (255 Character Limit)")
+        cancelEditModal();
+    }
+    else {
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({
+            "name": deptNameInput,
+            "deleted": deleted,
+        });
+
+        var requestOptions = {
+            method: 'PUT',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+          };
+
+        fetch("/api/departments/" + deptId, requestOptions)
+            .then(response => {
+                response.text()
+                let userMessage = "Department updated sucessfully!"
+                //let userMessage = "Individual created."
+                let userLink = "/departments/view/" + deptId
+                itemCreatedNotify(userMessage, userLink);
+            })
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
+    }
+    cancelEditModal();
 }

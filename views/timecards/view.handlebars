@@ -17,6 +17,7 @@
 
 <div class="columns">
   <div class="column">
+    <div class="box">
       <h3 class="subtitle">Details</h3>
     timecardID: <kbd>{{this.timecard.id}}</kbd><br>
 
@@ -25,11 +26,14 @@ Date: {{this.timecard.date}}<br>
 Hours: {{this.timecard.hours}}<br>
 <!-- TODO: Refer -->
 Individual: {{this.timecard.individual_id}} <a href="/people/view/{{this.timecard.individual_id}}">(View)</a><br>
+</div>
   </div>
   <div class="column">
+    <div class="box">
       <h3 class="subtitle">Notes</h3>
     {{this.timecard.notes}}<br>
   </div>
+    </div>
 </div>
 
 <h3 class="subtitle">Additional Record Details</h3>
