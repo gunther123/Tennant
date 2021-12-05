@@ -1,4 +1,4 @@
-{{> breadcrumbs level1_txt='Timecards' level1_url='/timecards' currLvl_txt='Edit Timecard' }}
+{{> breadcrumbs level1_txt='Timecards' level1_url='/timecards/' currLvl_txt='Edit Timecard' }}
 <h1 class="title">Edit Timecard</h1>
 
 <div id="errDiv" class="notification is-danger" style="display: none;"><span id="errorText"></span></div>
@@ -10,7 +10,7 @@
     <div class="columns">
         <div class="column">
             <label for="title">Title:</label><br>
-            <input class="input" type="text" id="title" name="title" value="" placeholder="Processed Paperwork"><br>
+            <input class="input" type="text" id="title" name="title" value="{{this.timecard.title}}" placeholder="Processed Paperwork"><br>
 
             <label for="individual">Person:</label><br>
             <div class="select">
@@ -23,22 +23,24 @@
                 </select>
             </div><br>
             <label for="date">Date:</label><br>
-            <input class="input" type="date" id="date" name="date" value="" disabled="1"><br>
+            <input class="input" type="date" id="date" name="date" value="{{this.timecard.date}}"><br>
         </div>
         <div class="column">
             <label for="hours">Hours:</label><br>
-            <input class="input" type="text" id="hours" name="hours" value="" placeholder="5"><br>
+            <input class="input" type="text" id="hours" name="hours" value="{{this.timecard.hours}}" placeholder="5"><br>
 
             <label for="notes">Notes:</label><br>
-            <textarea class="textarea" id="notes" name="notes" rows="4" cols="50"></textarea><br>
+            <textarea class="textarea" id="notes" name="notes" rows="4" cols="50">{{this.timecard.notes}}</textarea><br>
         </div>
     </div>
 
 
-    <input class="button is-success" type="button" value="Submit" onclick="createTimecard()">
-    <!-- Delete this test button for prod -->
-    <input class="button" type="button" value="Fill Test Data" onclick="testTimecardData()">
+    <input class="button is-success" type="button" value="Edit" onclick="createTimecard()">
     <!-- End Test Btn -->
     <a class="button" href="/timecards">Cancel</a>
 
 </form>
+<hr>
+<h3 class="subtitle">Additional Record Details</h3>
+Created: {{this.timecard.createdAt}}<br>
+Last Modified: {{this.timecard.updatedAt}}

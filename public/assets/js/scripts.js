@@ -9,6 +9,7 @@ function createTimecard() {
     /*theData = {title, individual, hours, notes}
     console.log(theData);*/
 
+    var editModalOpen = false;
 
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -185,4 +186,102 @@ function itemCreatedNotify(message, link) {
     informDiv.style.display = 'block';
     informMsg.textContent = message;
     informLink.href = link;
+}
+
+function editModalConfirm() {
+    editModalOpen = true;
+    let element = document.getElementById("editConfirmModal");
+    element.classList.add("is-active");
+}
+
+function updateIndividual() {
+
+    //person data
+    let userid = document.getElementById("userid").value;
+    let fname = document.getElementById("fname").value;
+    let lname = document.getElementById("lname").value;
+    let nname = document.getElementById("nname").value;
+    let startdate = document.getElementById("startdate").value;
+    let email = document.getElementById("email").value;
+    let department = document.getElementById("department").value;
+    let usernotes = document.getElementById("usernotes").value;
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
+    let disabled = document.getElementById("disabled").value;
+    //let lastlogin = null;
+
+    if (fname.length == 0 || fname.length > 255) {
+        itemErrorNotify("First Name cannot be left blank, or is too long.")
+        cancelEditModal();
+    }
+    else if (lname.length == 0 || lname.length > 255) {
+        itemErrorNotify("Last Name cannot be left blank, or is too long.")
+        cancelEditModal();
+    }
+    else if (startdate.length == 0) {
+        itemErrorNotify("Start date must be set")
+        cancelEditModal();
+    }
+    else if (email.length == 0 || email.length > 255) {
+        itemErrorNotify("Email must be populated, or is too long.")
+        cancelEditModal();
+    }
+    /*else if (department.length == 0) {
+        itemErrorNotify("Department cannot be left blank")
+        cancelEditModal(); }*/
+    else if (username.length == 0 || username.length > 255) {
+        itemErrorNotify("Username cannot be left blank, or is too long.")
+        cancelEditModal();
+    }
+    else if (password.length == 0 || password.length > 255) {
+        itemErrorNotify("Password cannot be left blank, or is too long.")
+        cancelEditModal();
+    }
+    else if (password.length < 8) {
+        itemErrorNotify("Password must be 8 characters minimum");
+        cancelEditModal();
+    }
+    else {
+
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({
+            "first_name": fname,
+            "last_name": lname,
+            "nickname": nname,
+            "start_date": startdate,
+            "email": email,
+            "username": username,
+            "password": password,
+            "notes": usernotes,
+            "disabled": disabled
+        });
+
+        var requestOptions = {
+            method: 'PUT',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+
+        fetch("http://localhost:3001/api/individuals/" + userid, requestOptions)
+            .then(response => {
+                response.text();
+                let userMessage = "Person updated sucessfully!"
+                //let userMessage = "Individual created."
+                let userLink = "/people/view/" + userid
+                itemCreatedNotify(userMessage, userLink);
+            })
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
+
+
+        cancelEditModal();
+    }
+}
+
+function cancelEditModal() {
+    let element = document.getElementById("editConfirmModal");
+    element.classList.remove("is-active");
 }
