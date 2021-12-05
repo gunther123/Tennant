@@ -67,6 +67,34 @@ router.post('/', (req, res) => {
     });
   });
 
+router.post('/login', (req, res) => {
+  Individual.findOne({
+    where: {
+      email: req.body.email
+    }
+  }).then(dbPostData => {
+    if (!dbPostData) {
+      res.status(400).json({ message: 'No user with that email address!' });
+      return;
+    }
+
+    const validPassword = dbPostData.checkPassword(req.body.password);
+
+    if (!validPassword) {
+      res.status(400).json({ message: 'Incorrect password!' });
+      return;
+    }
+
+    req.session.save(() => {
+      req.session.user_id = dbPostData.id;
+      req.session.username = dbPostData.username;
+      req.session.loggedIn = true;
+
+      res.json({ user: dbPostData, message: 'Successfully logged in!' });
+    });
+  });
+});
+
 //Update Individual
 router.put('/:id', (req, res) => {
   // update an Individual by its `id` value
