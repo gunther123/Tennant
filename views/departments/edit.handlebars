@@ -1,11 +1,15 @@
-{{> breadcrumbs level1_txt='Departments' level1_url='/departments' currLvl_txt='Edit Department' }}
+{{> breadcrumbs level1_txt='Departments' level1_url='/departments/' currLvl_txt='Edit Department' }}
 <h1 class="title">Edit Department</h1>
 <div id="errDiv" class="notification is-danger" style="display: none;"><span id="errorText"></span></div>
 <div id="informDiv" class="notification is-primary" style="display: none;"><span id="informText"></span> <a id="informLink" href="#">View Department</a></div>
 
 <form name="newDept" onsubmit="return false;">
-  <label class="label" for="dname">Department Name:</label><br>
-  <input class="input" type="text" id="dname" name="dname" value=""><br><br>
-  <input class="button is-success" type="button" value="Submit" onclick="createDepartment()">
+  <label for="dname">Department Name:</label><br>
+  <input class="input" type="text" id="dname" name="dname" value="{{this.department.name}}"><br><br>
+  <input class="button is-success" type="button" value="Edit" onclick="createDepartment()">
   <a class="button" href="/departments">Cancel</a>
 </form>
+<hr>
+<h3 class="subtitle">Additional Record Details</h3>
+Created: {{this.department.createdAt}}<br>
+Last Modified: {{this.department.updatedAt}}
