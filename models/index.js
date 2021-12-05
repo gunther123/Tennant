@@ -14,4 +14,8 @@ Timecard.belongsTo(Individual, {
     foreignKey: 'individual_id'
 });
 
+// Individual has many timecards - fk = timecard_id
+
+Individual.hasMany(Timecard);
+
 module.exports = { Department, Timecard, Individual };
