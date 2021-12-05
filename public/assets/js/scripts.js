@@ -29,7 +29,7 @@ function createTimecard() {
         redirect: 'follow'
     };
 
-    fetch("http://localhost:3001/api/timecards", requestOptions)
+    fetch("/api/timecards", requestOptions)
         .then(response => response.text())
         .then(result => {
             console.log(JSON.parse(result))
@@ -101,7 +101,7 @@ function createIndividual() {
             redirect: 'follow'
         };
 
-        fetch("http://localhost:3001/api/individuals/", requestOptions)
+        fetch("/api/individuals/", requestOptions)
             .then(response => response.text())
             .then(result => {
                 console.log(JSON.parse(result))
@@ -156,7 +156,7 @@ function createDepartment() {
             redirect: 'follow'
         };
 
-        fetch("http://localhost:3001/api/departments/", requestOptions)
+        fetch("/api/departments/", requestOptions)
             .then(response => response.text())
             .then(result => {
                 console.log(JSON.parse(result).id)
@@ -265,7 +265,7 @@ function updateIndividual() {
             redirect: 'follow'
         };
 
-        fetch("http://localhost:3001/api/individuals/" + userid, requestOptions)
+        fetch("/api/individuals/" + userid, requestOptions)
             .then(response => {
                 response.text();
                 let userMessage = "Person updated sucessfully!"
