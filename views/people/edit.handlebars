@@ -3,56 +3,63 @@
 
 <div id="errDiv" class="notification is-danger" style="display: none;"><span id="errorText"></span></div>
 <div id="informDiv" class="notification is-primary" style="display: none;"><span id="informText"></span> <a
-        id="informLink" href="#">View Person</a></div>
+    id="informLink" href="#">View Person</a></div>
 
 <form name="newPerson">
-    <div class="columns">
-        <div class="column">
-            <label for="fname">ID:</label><br>
-            <input class="input" type="text" id="userid" name="userid" value="{{this.person.id}}" placeholder="David" disabled="1"><br>
-            <label for="fname">First Name:</label><br>
-            <input class="input" type="text" id="fname" name="fname" value="{{this.person.first_name}}" placeholder="David"><br>
-            <label for="lname">Last Name:</label><br>
-            <input class="input" type="text" id="lname" name="lname" value="{{this.person.last_name}}" placeholder="Tennant"><br>
-            <label for="nname">Nickname:</label><br>
-            <input class="input" type="text" id="nname" name="nname" value="{{this.person.nickname}}" placeholder=""><br>
-            <label for="startdate">Start Date:</label><br>
-            <input class="input" type="date" id="startdate" name="startdate" value="{{this.person.start_date}}" placeholder=""><br>
-            <label for="email">Email:</label><br>
-            <input class="input" type="email" id="email" name="email" value="{{this.person.email}}" placeholder="tennant@doctor.co.uk"><br>
-        </div>
-        <div class="column">
-            <label for="department">Department:</label>{{this.person.department_id}} <br>
-            <div class="select" value="1">
-                <select name="department" id="department" value="{{this.person.department_id}}">
-                    <!-- Iterate through each returned department and render into select form. -->
-                    {{#each this.department}}
-                    <option value={{dataValues.id}}>{{dataValues.name}}</option>
-                    {{/each}}
-                </select> 
-            </div><br>
-            
-            <!--<input type="text" id="department" name="department" value="1"><br>-->
-            <label for="usernotes">Notes:</label><br>
-            <textarea class="textarea" id="usernotes" name="usernotes" rows="2" cols="50">{{this.person.notes}}</textarea><br>
-            <h3 class="subtitle">Login Information</h3>
-            <label for="username">Username:</label><br>
-            <input class="input" type="text" id="username" name="username" value="{{this.person.username}}" placeholder="d.tennant"><br>
-            <label for="password">Password:</label><br>
-            <input class="input" type="password" id="password" name="password" value="{{this.person.password}}" placeholder=""><br>
-            <label for="department">Disabled?</label><br>
-            <div class="select" value="1">
-                <select name="disabled" id="disabled" value="{{this.person.disabled}}">
-                    <option value="false">Active</option>
-                    <option value="true">Disabled</option>
-                </select> 
-            </div><br>
-        </div>
+  <div class="columns">
+    <div class="column">
+      <label for="fname">ID:</label><br>
+      <input class="input" type="text" id="userid" name="userid" value="{{this.person.id}}" placeholder="David"
+        disabled="1"><br>
+      <label for="fname">First Name:</label><br>
+      <input class="input" type="text" id="fname" name="fname" value="{{this.person.first_name}}"
+        placeholder="David"><br>
+      <label for="lname">Last Name:</label><br>
+      <input class="input" type="text" id="lname" name="lname" value="{{this.person.last_name}}"
+        placeholder="Tennant"><br>
+      <label for="nname">Nickname:</label><br>
+      <input class="input" type="text" id="nname" name="nname" value="{{this.person.nickname}}" placeholder=""><br>
+      <label for="startdate">Start Date:</label><br>
+      <input class="input" type="date" id="startdate" name="startdate" value="{{this.person.start_date}}"
+        placeholder=""><br>
+      <label for="email">Email:</label><br>
+      <input class="input" type="email" id="email" name="email" value="{{this.person.email}}"
+        placeholder="tennant@doctor.co.uk"><br>
     </div>
+    <div class="column">
+      <label for="department">Department:</label>{{this.person.department_id}} <br>
+      <div class="select" value="1">
+        <select name="department" id="department" value="{{this.person.department_id}}">
+          <!-- Iterate through each returned department and render into select form. -->
+          {{#each this.department}}
+          <option value={{dataValues.id}}>{{dataValues.name}}</option>
+          {{/each}}
+        </select>
+      </div><br>
 
-    <input class="button is-success" type="button" value="Edit" onclick="editModalConfirm()">
-    <!-- End Test Btn -->
-    <a class="button" href="/people/">Cancel</a>
+      <!--<input type="text" id="department" name="department" value="1"><br>-->
+      <label for="usernotes">Notes:</label><br>
+      <textarea class="textarea" id="usernotes" name="usernotes" rows="2" cols="50">{{this.person.notes}}</textarea><br>
+      <h3 class="subtitle">Login Information</h3>
+      <label for="username">Username:</label><br>
+      <input class="input" type="text" id="username" name="username" value="{{this.person.username}}"
+        placeholder="d.tennant"><br>
+      <label for="password">Password:</label><br>
+      <input class="input" type="password" id="password" name="password" value="{{this.person.password}}"
+        placeholder=""><br>
+      <label for="department">Disabled?</label><br>
+      <div class="select" value="1">
+        <select name="disabled" id="disabled" value="{{this.person.disabled}}">
+          <option value="false">Active</option>
+          <option value="true">Disabled</option>
+        </select>
+      </div><br>
+    </div>
+  </div>
+
+  <input class="button is-success" type="button" value="Edit" onclick="editModalConfirm()">
+  <!-- End Test Btn -->
+  <a class="button" href="/people/">Cancel</a>
 
 </form>
 <hr>
@@ -68,7 +75,8 @@ Last Modified: {{this.person.updatedAt}}
       <button class="delete" aria-label="close" onclick="cancelEditModal()"></button>
     </header>
     <section class="modal-card-body">
-      <p>Updating this record will overwrite any data currently on that record, and cannot be reversed. If in doubt, Now is the time to go back and check your work.</p>
+      <p>Updating this record will overwrite any data currently on that record, and cannot be reversed. If in doubt, Now
+        is the time to go back and check your work.</p>
     </section>
     <footer class="modal-card-foot">
       <button class="button is-warning" onclick="updateIndividual()">Save changes</button>
