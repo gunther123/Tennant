@@ -21,7 +21,7 @@ const sess = {
 };
 
 //Middleware setup
-const PORT = process.env.PORT || 3555;
+const PORT = process.env.PORT || 3001;
 
 //Load the handlebars module
 var exphbs = require('express-handlebars');
