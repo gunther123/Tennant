@@ -5,14 +5,14 @@ const timecardRoutes = require('./timecard-routes');
 
 router.post('/logout', (req, res) => {
     if (req.session.loggedIn) {
-      req.session.destroy(() => {
-        res.status(204).end();
-      });
+        req.session.destroy(() => {
+            res.status(204).end();
+        });
     }
     else {
-      res.status(404).end();
+        res.status(404).end();
     }
-  })
+})
 
 router.use('/departments', departmentRoutes);
 router.use('/individuals', individualRoutes);
