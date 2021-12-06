@@ -1,7 +1,8 @@
 {{> breadcrumbs level1_txt='Departments' level1_url='/departments/' currLvl_txt='Edit Department' }}
 <h1 class="title">Edit Department</h1>
 <div id="errDiv" class="notification is-danger" style="display: none;"><span id="errorText"></span></div>
-<div id="informDiv" class="notification is-primary" style="display: none;"><span id="informText"></span> <a id="informLink" href="#">View Department</a></div>
+<div id="informDiv" class="notification is-primary" style="display: none;"><span id="informText"></span> <a
+    id="informLink" href="#">View Department</a></div>
 
 <form name="newDept" onsubmit="return false;">
   <label for="dname">Id:</label><br>
@@ -26,7 +27,8 @@ Last Modified: {{this.department.updatedAt}}
       <button class="delete" aria-label="close" onclick="cancelEditModal()"></button>
     </header>
     <section class="modal-card-body">
-      <p>Updating this record will overwrite the department, and cannot be reversed. If in doubt, Now is the time to go back and check your work.</p>
+      <p>Updating this record will overwrite the department, and cannot be reversed. If in doubt, Now is the time to go
+        back and check your work.</p>
     </section>
     <footer class="modal-card-foot">
       <button class="button is-warning" onclick="updateDepartment()">Save changes</button>

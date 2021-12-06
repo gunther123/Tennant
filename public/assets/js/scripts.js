@@ -381,7 +381,7 @@ function updateDepartment() {
             headers: myHeaders,
             body: raw,
             redirect: 'follow'
-          };
+        };
 
         fetch("/api/departments/" + deptId, requestOptions)
             .then(response => {

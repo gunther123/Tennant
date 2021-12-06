@@ -1,18 +1,19 @@
 {{> breadcrumbs level1_txt='Departments' level1_url='/departments/' currLvl_txt=this.department.name }}
 
 <nav class="level">
-  <!-- Left side -->
-  <div class="level-left">
-    <div class="level-item">
-      <h1 class="title">Department: {{this.department.name}} {{#if this.department.deleted}}<span class="tag is-danger">Deleted</span>{{/if}}</h1>
+    <!-- Left side -->
+    <div class="level-left">
+        <div class="level-item">
+            <h1 class="title">Department: {{this.department.name}} {{#if this.department.deleted}}<span
+                    class="tag is-danger">Deleted</span>{{/if}}</h1>
+        </div>
     </div>
-  </div>
 
-  <!-- Right side -->
-  <div class="level-right">
-    <p class="level-item"><a class="button" href="../edit/{{this.department.id}}">Edit</a></p>
-    <!--<p class="level-item"><a class="button is-danger" href="./delete">Delete</a></p>-->
-  </div>
+    <!-- Right side -->
+    <div class="level-right">
+        <p class="level-item"><a class="button" href="../edit/{{this.department.id}}">Edit</a></p>
+        <!--<p class="level-item"><a class="button is-danger" href="./delete">Delete</a></p>-->
+    </div>
 </nav>
 
 <h3 class="subtitle">Additional Record Details</h3>
