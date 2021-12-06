@@ -60,8 +60,17 @@
                     {{!-- <a class="button is-primary">
                         <strong>Sign up</strong>
                     </a> --}}
-                    <a class="button is-light">
+                    {{#if session.id}}
+                    <button id="logout" class="button is-light">
+                        Log out
+                    </button>
+                    {{else}}
+                    <a href="/login" class="button is-light">
                         Log in
+                    </a>
+                    {{/if}}
+                    
+                   {{session.id}}
                     </a>
                 </div>
             </div>

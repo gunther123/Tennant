@@ -4,9 +4,11 @@ const individualRoutes = require('./individual-routes');
 const timecardRoutes = require('./timecard-routes');
 
 router.get('/', function (req, res) {
-    res.render('home');
-  });
-
+  res.render('home');
+});
+router.get('/login', function (req, res) {
+  res.render('login');
+});
 router.use('/departments', departmentRoutes);
 router.use('/people', individualRoutes);
 router.use('/timecards', timecardRoutes);
