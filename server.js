@@ -37,8 +37,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session(sess));
 //return session detail to handlebars
 app.use(function (req, res, next) {
-    res.locals.session = req.session;
-    next();
+  res.locals.session = req.session;
+  next();
 });
 
 app.use(routes);
