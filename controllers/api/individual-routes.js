@@ -95,6 +95,16 @@ router.post('/login', (req, res) => {
   });
 });
 
+router.post('/logout', (req, res) => {
+  if (req.session.loggedIn) {
+    req.store.destroy(req.sessionID, () => {
+      res.status(204).end();
+    });
+  }
+  else {
+    res.status(404).end();
+  }
+})
 
 
 //Update Individual
