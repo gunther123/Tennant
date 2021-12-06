@@ -21,7 +21,7 @@ const sess = {
 };
 
 //Middleware setup
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3555;
 
 //Load the handlebars module
 var exphbs = require('express-handlebars');
@@ -36,9 +36,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session(sess));
 //return session detail to handlebars
-app.use(function (req, res, next) {
+app.use(function (req, res) {
     res.locals.session = req.session;
-    next();
 });
 
 app.use(routes);
