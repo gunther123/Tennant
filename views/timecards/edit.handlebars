@@ -1,0 +1,64 @@
+{{> breadcrumbs level1_txt='Timecards' level1_url='/timecards/' currLvl_txt='Edit Timecard' }}
+<h1 class="title">Edit Timecard</h1>
+
+<div id="errDiv" class="notification is-danger" style="display: none;"><span id="errorText"></span></div>
+<div id="informDiv" class="notification is-primary" style="display: none;"><span id="informText"></span> <a
+        id="informLink" href="#">View Timecard</a></div>
+
+<form name="newTimecard">
+
+    <div class="columns">
+        <div class="column">
+            <label for="title">Id:</label><br>
+            <input class="input" type="text" id="timecardId" name="timecardId" disabled="1" value="{{this.timecard.id}}" placeholder="Processed Paperwork"><br>
+            <label for="title">Title:</label><br>
+            <input class="input" type="text" id="title" name="title" value="{{this.timecard.title}}" placeholder="Processed Paperwork"><br>
+
+            <!--<label for="individual">Person:</label><br>
+            <div class="select">
+                <select class="select" name="individual" id="individual">
+                    {{#each this.people}}
+                    <option value={{dataValues.id}}>{{dataValues.first_name}} {{dataValues.last_name}} {{#unless
+                        nickname}}({{dataValues.nickname}}){{/unless}}</option>
+                    {{/each}}
+                </select>
+            </div><br>-->
+            <label for="date">Date:</label><br>
+            <input class="input" type="date" id="date" name="date" value="{{this.timecard.date}}"><br>
+        </div>
+        <div class="column">
+            <label for="hours">Hours:</label><br>
+            <input class="input" type="text" id="hours" name="hours" value="{{this.timecard.hours}}" placeholder="5"><br>
+
+            <label for="notes">Notes:</label><br>
+            <textarea class="textarea" id="notes" name="notes" rows="4" cols="50">{{this.timecard.notes}}</textarea><br>
+        </div>
+    </div>
+
+
+    <input class="button is-success" type="button" value="Edit" onclick="editModalConfirm()">
+    <!-- End Test Btn -->
+    <a class="button" href="/timecards/">Cancel</a>
+
+</form>
+<hr>
+<h3 class="subtitle">Additional Record Details</h3>
+Created: {{this.timecard.createdAt}}<br>
+Last Modified: {{this.timecard.updatedAt}}
+
+<div id="editConfirmModal" class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Update Timecard?</p>
+      <button class="delete" aria-label="close" onclick="cancelEditModal()"></button>
+    </header>
+    <section class="modal-card-body">
+      <p>Updating this record will overwrite any data currently on that timecard, and cannot be reversed. If in doubt, Now is the time to go back and check your work.</p>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-warning" onclick="updateTimecard()">Save changes</button>
+      <button class="button" onclick="cancelEditModal()">Cancel</button>
+    </footer>
+  </div>
+</div>

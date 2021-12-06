@@ -1,0 +1,51 @@
+{{> breadcrumbs currLvl_txt='Timecards' }}
+
+<nav class="level">
+  <!-- Left side -->
+  <div class="level-left">
+    <div class="level-item">
+      <h1 class="title">Timecards</h1>
+    </div>
+  </div>
+
+  <!-- Right side -->
+  <div class="level-right">
+    <p class="level-item"><a class="button is-success" href="./new">New</a></p>
+  </div>
+</nav>
+<table class="table is-fullwidth is-striped">
+    <thead>
+        <tr>
+            <th style="width: 16px;">Timecard</th>
+            <th>Title</th>
+            <th>Hours</th>
+            <th>Date</th>
+            <th>Individual</th>
+            <th>Flags</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each this.timecard}}
+        <tr>
+            <td>{{dataValues.id}}</td>
+            <td>{{dataValues.title}}</td>
+            <td>{{dataValues.hours}} hr</td>
+            <td>{{dataValues.date}}</td>
+            <td>{{dataValues.individual_id}}</td>
+            <td>{{#if dataValues.notes}}<i class="fas fa-comment-alt"></i>{{/if}}</td>
+            <td><a class="button is-small" href="./view/{{dataValues.id}}">View</a> <a class="button is-small" href="./edit/{{dataValues.id}}">Edit</a> <!--<a class="button is-small is-danger" href="./edit/{{dataValues.id}}"><i class="fas fa-trash"></i></a>--></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+
+<div class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-content">
+    <!-- Any other Bulma elements you want -->
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis explicabo neque sed possimus, mollitia dolor tenetur officia quo assumenda provident repellat consequatur necessitatibus in doloribus autem eos inventore eius veniam?
+  </div>
+  <button class="modal-close is-large" aria-label="close"></button>
+</div>

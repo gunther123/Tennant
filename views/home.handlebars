@@ -1,0 +1,71 @@
+{{> breadcrumbs currLvl_txt='Home' }}
+<h1 class="title">Dashboard</h1>
+
+<nav class="level">
+  <div class="level-item has-text-centered">
+    <div>
+      <p class="heading">Individuals Tracked</p>
+      <p class="title">8</p>
+    </div>
+  </div>
+  <div class="level-item has-text-centered">
+    <div>
+      <p class="heading">Departments</p>
+      <p class="title">4</p>
+    </div>
+  </div>
+  <div class="level-item has-text-centered">
+    <div>
+      <p class="heading">Timecards</p>
+      <p class="title">15</p>
+    </div>
+  </div>
+  <div class="level-item has-text-centered">
+    <div>
+      <p class="heading">Total Hours</p>
+      <p class="title">203</p>
+    </div>
+  </div>
+</nav>
+
+<h5 class="title is-5">Previous 5 Timecards Logged</h5>
+<table class="table is-fullwidth is-striped">
+  <thead>
+    <tr>
+      <th>Timecard</th>
+      <th>Hours</th>
+      <th>Person</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Fluff it out! -->
+    <tr>
+      <td>December 1, 2021</td>
+      <td>Edited Promotional Video for Twitter</td>
+      <td>12</td>
+      <td><a class="button is-small" href="/departments/view/{{dataValues.id}}">Details</a></td>
+    </tr>
+    <tr>
+      <td>November 30, 2021</td>
+      <td>Social Media Engagements</td>
+      <td>3</td>
+      <td><a class="button is-small" href="/departments/view/{{dataValues.id}}">Details</a></td>
+    </tr>
+    <tr>
+      <td>November 28, 2021</td>
+      <td>Coaching the intern</td>
+      <td>5</td>
+      <td><a class="button is-small" href="/departments/view/{{dataValues.id}}">Details</a></td>
+    </tr>
+    <!-- End Fluff -->
+    {{#each this.department}}
+    <tr>
+      <td>{{dataValues.name}}</td>
+      <td>{{dataValues.name}}</td>
+      <td>{{dataValues.name}}</td>
+      <td><a class="button is-small" href="/departments/view/{{dataValues.id}}">Details</a></td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>

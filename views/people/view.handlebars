@@ -1,0 +1,93 @@
+{{> breadcrumbs level1_txt='People' level1_url='/people/' currLvl_txt=this.person.username }}
+
+<nav class="level">
+  <!-- Left side -->
+  <div class="level-left">
+    <div class="level-item">
+      <h1 class="title">{{this.person.first_name}} {{this.person.last_name}} {{#if this.person.disabled}}<span class="tag is-danger">User Disabled</span>{{/if}}</h1>
+    </div>
+  </div>
+
+  <!-- Right side -->
+  <div class="level-right">
+    <p class="level-item"><a class="button" href="../edit/{{this.person.id}}">Edit</a></p>
+    <!--{{#unless this.person.disabled}}
+    <p class="level-item"><a class="button is-warning" href="./delete">Disable User</a></p>
+    {{else}}
+    <p class="level-item"><a class="button is-warning" href="./delete">Enable User</a></p>
+    {{/unless}}
+    <p class="level-item"><a class="button is-danger" href="./delete">Delete</a></p>-->
+  </div>
+</nav>
+
+<div class="columns">
+    <div class="column">
+        <div class="box">
+        <h3 class="subtitle">Details</h3>
+        PersonID: <kbd>{{this.person.id}}</kbd><br>
+        First name: {{this.person.first_name}}<br>
+        Last name: {{this.person.last_name}}<br>
+        Nickname: {{this.person.nickname}}<br>
+        Email: <a href="mailto:{{this.person.email}}">{{this.person.email}}</a><br>
+        <!-- TODO: Lookup & Display Department Name instead of ID -->
+        Department: {{this.person.department_id}} <a
+            href="/departments/view/{{this.person.department_id}}">(View)</a><br>
+        Notes: {{this.person.notes}}<br>
+        </div>
+    </div>
+    <div class="column">
+        <div class="box">
+        <h3 class="subtitle">User Login Details</h3>
+        Username: {{this.person.username}}<br>
+        Password: ??? <br>
+        User Last Login: {{this.person.last_login}}<br>
+        Disabled: {{this.person.disabled}}<br>
+        </div>
+    </div>
+</div>
+
+<h3 class="subtitle">Additional Record Details</h3>
+Created: {{this.person.createdAt}}<br>
+Modified: {{this.person.updatedAt}}
+<hr>
+<h5 class="title is-5">Recent Timecards</h5>
+<table class="table is-fullwidth is-striped">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Timecard</th>
+            <th>Hours</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- MOCK -->
+        <tr>
+            <td>December 1, 2021</td>
+            <td>Edited Promotional Video for Twitter</td>
+            <td>12</td>
+            <td><a href="/departments/view/{{dataValues.id}}">Details</a></td>
+        </tr>
+        <tr>
+            <td>November 30, 2021</td>
+            <td>Social Media Engagements</td>
+            <td>3</td>
+            <td><a href="/departments/view/{{dataValues.id}}">Details</a></td>
+        </tr>
+        <tr>
+            <td>November 28, 2021</td>
+            <td>Coaching the intern</td>
+            <td>5</td>
+            <td><a href="/departments/view/{{dataValues.id}}">Details</a></td>
+        </tr>
+        {{#each this.department}}
+        <tr>
+            <td>{{dataValues.name}}</td>
+            <td>{{dataValues.name}}</td>
+            <td><a href="/departments/view/{{dataValues.id}}">Details</a></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<br><br><br>
+<a href="/people/">Back</a>

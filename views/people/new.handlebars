@@ -1,0 +1,50 @@
+{{> breadcrumbs level1_txt='People' level1_url='/people/' currLvl_txt='New Person' }}
+<h1 class="title">New Person</h1>
+
+<div id="errDiv" class="notification is-danger" style="display: none;"><span id="errorText"></span></div>
+<div id="informDiv" class="notification is-primary" style="display: none;"><span id="informText"></span> <a
+        id="informLink" href="#">View Person</a></div>
+
+<form name="newPerson">
+    <div class="columns">
+        <div class="column">
+            <label for="fname">First Name:</label><br>
+            <input class="input" type="text" id="fname" name="fname" value="" placeholder="David"><br>
+            <label for="lname">Last Name:</label><br>
+            <input class="input" type="text" id="lname" name="lname" value="" placeholder="Tennant"><br>
+            <label for="nname">Nickname:</label><br>
+            <input class="input" type="text" id="nname" name="nname" value="" placeholder=""><br>
+            <label for="startdate">Start Date:</label><br>
+            <input class="input" type="date" id="startdate" name="startdate" value="" placeholder=""><br>
+            <label for="email">Email:</label><br>
+            <input class="input" type="email" id="email" name="email" value="" placeholder="tennant@doctor.co.uk"><br>
+        </div>
+        <div class="column">
+            <label for="department">Department:</label><br>
+            <div class="select">
+                <select name="department" id="department">
+                    <!-- Iterate through each returned department and render into select form. -->
+                    {{#each this.department}}
+                    <option value={{dataValues.id}}>{{dataValues.name}}</option>
+                    {{/each}}
+                </select>
+            </div><br>
+            <!--<input type="text" id="department" name="department" value="1"><br>-->
+            <label for="usernotes">Notes:</label><br>
+            <textarea class="textarea" id="usernotes" name="usernotes" rows="2" cols="50"></textarea><br>
+            <h3 class="subtitle">Login Information</h3>
+            <label for="username">Username:</label><br>
+            <input class="input" type="text" id="username" name="username" value="" placeholder="d.tennant"><br>
+            <label for="password">Password:</label><br>
+            <input class="input" type="password" id="password" name="password" value="" placeholder=""><br>
+        </div>
+    </div>
+
+
+    <input class="button is-success" type="button" value="Submit" onclick="createIndividual()">
+    <!-- Delete this test button for prod -->
+    <input class="button" type="button" value="Fill Test Data" onclick="testIndvData()">
+    <!-- End Test Btn -->
+    <a class="button" href="/people/">Cancel</a>
+
+</form>

@@ -1,0 +1,9 @@
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css";
+
+.dash_btn_float {
+    float: right;
+  }
+
+.is-disabled {
+  color: #d4d4d4;
+}
