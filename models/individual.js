@@ -86,7 +86,7 @@ Individual.init(
                 updatedIndividualData.password = await bcrypt.hash(updatedIndividualData.password, 10);
                 return updatedIndividualData;
             }
-    },
+        },
         sequelize,
         freezeTableName: true,
         underscored: true,
